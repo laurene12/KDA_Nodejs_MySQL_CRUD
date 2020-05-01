@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Apprenants</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="container" style="margin-top: 50px;">
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills w-100">
+                <li class="nav-pill active">
+                    <h1>Liste des apprenants</h1>
+                </li>
+                <li class="nav-pill ml-auto">
+                    <a class="nav-link active" href="/apprenants/new">Ajouter un apprenant</a>
+                </li>
+            </ul>
+        </div>
+    <div class="card-body">
+
+        <% if(apprenants.length) { %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th width="200px">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let apprenant of apprenants) {%>
+                <tr>
+                    <th scope="row"><%= apprenant.id %></th>
+                    <td><%= apprenant.nom %></td>
+                    <td><%= apprenant.prenom %></td>
+                    <td>
+                        <!-- <a href="/apprenants/<%= apprenant.id %>">Voir détails</a> -->
+                        <a class="btn btn-success edit" href="/apprenants/update/<%= apprenant.id %>">Edit</a>
+                        <a class="btn btn-danger delete" onclick="return confirm('Voulez-vous supprimer?')"href="/apprenants/DELETE/<%= apprenant.id %>?_method=DELETE">Delete</a>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+        <% } %>
+
+        <!-- if result is empty -->
+        <% if(!apprenants.length) { %>
+            <p class="text-center">No book found!</p>
+        <% } %>
+
+        </div>
+    </div>
+
+</body>
+</html>
